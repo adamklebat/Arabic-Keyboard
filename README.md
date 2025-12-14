@@ -17,7 +17,8 @@ A **lightweight, responsive virtual keyboard** for typing in Arabic. Perfect for
 ## Demo 🚀
 
 You can try it live here:  
-ar-keyboard.com
+[ar-keyboard.com](https://ar-keyboard.com)
+
 
 ---
 
