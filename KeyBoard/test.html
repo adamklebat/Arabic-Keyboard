@@ -1,20 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f10707;
-            color: #333;
-            margin: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arabic Keyboard Layout – Arabic Letters on English Keyboard</title>
+<meta name="description" content="Arabic keyboard layout for people who do not have Arabic letters on their keyboard. See Arabic letters mapped to English keys on a PC keyboard.">
+<meta name="keywords" content="Arabic Keyboard, Arabic Keyboard Layout, Arabic Letters on Keyboard, Arabic Keyboard PC, English Keyboard Arabic Letters">
+
+<style>
+:root{
+  --key-w:56px;
+  --key-h:56px;
+  --gap:8px;
+  --bg:#0f172a;
+  --kbd:#020617;
+  --key:#1e293b;
+  --key-hover:#334155;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --accent:#22c55e;
+}
+
+*{box-sizing:border-box;font-family:system-ui,Segoe UI,Arial}
+body{
+  margin:0;
+  background:linear-gradient(135deg,#020617,#0f172a);
+  color:var(--text);
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:30px 15px 60px;
+}
+
+h1,h2,h3{text-align:center;margin-bottom:12px}
+p{
+  text-align:center;
+  max-width:850px;
+  margin:0 auto 20px;
+  line-height:1.7;
+  color:#cbd5f5;
+}
+
+.keyboard{
+  background:var(--kbd);
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 25px 60px rgba(0,0,0,.5);
+  margin:30px auto;
+}
+
+.row{
+  display:flex;
+  justify-content:center;
+  margin-bottom:10px;
+}
+
+.key{
+  width:var(--key-w);
+  height:var(--key-h);
+  margin:4px;
+  background:var(--key);
+  border-radius:12px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:.2s;
+  user-select:none;
+  box-shadow: inset 0 -4px 0 rgba(0,0,0,.4);
+}
+
+.key:hover{
+  background:var(--key-hover);
+  transform:translateY(-2px);
+}
+
+.key .en{
+  position:absolute;
+  top:6px;
+  left:8px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.key .ar{
+  font-size:22px;
+  font-weight:600;
+}
+
+.key.wide{width:calc(var(--key-w)*1.8)}
+.key.xwide{width:calc(var(--key-w)*2.6)}
+.key.space{width:calc(var(--key-w)*6)}
+
+.info{
+  text-align:center;
+  margin-top:15px;
+  color:var(--accent);
+  min-height:24px;
+}
+
+footer{
+  margin-top:60px;
+  text-align:center;
+  font-size:14px;
+  color:#94a3b8;
+}
+</style>
 </head>
+
 <body>
-    <h1>Test Page</h1>
-    <p>This is a test page for the keyboard layout.</p>
+<div class="container">
+
+<h1>Arabic Keyboard Layout (PC)</h1>
+
+<p>
+This Arabic keyboard layout helps people who do not have Arabic letters on their keyboard.
+If your keyboard only shows English letters, this page shows exactly where Arabic letters are located.
+</p>
+
+<h2>Arabic Keyboard for English Keyboards</h2>
+
+<div class="keyboard" id="keyboard"></div>
+<div class="info" id="info"></div>
+
+<h2>Where Are Arabic Letters on Keyboard?</h2>
+<p>
+Arabic letters are mapped to English keys on a standard QWERTY keyboard.
+The small English letter on each key shows the exact position on your real keyboard.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Can I use this without installing anything?</h3>
+<p>Yes. This is a visual Arabic keyboard layout only.</p>
+
+<h3>Who is this for?</h3>
+<p>For anyone who does not have Arabic letters printed on their keyboard.</p>
+
+<footer>Arabic Keyboard Layout ©</footer>
+
+</div>
+
+<script>
+const layout = [
+  [
+    {ar:"ذ",en:"`"},{ar:"1",en:"1"},{ar:"2",en:"2"},{ar:"3",en:"3"},{ar:"4",en:"4"},
+    {ar:"5",en:"5"},{ar:"6",en:"6"},{ar:"7",en:"7"},{ar:"8",en:"8"},
+    {ar:"9",en:"9"},{ar:"0",en:"0"},{ar:"-",en:"-"},{ar:"=",en:"="},"Backspace"
+  ],
+  [
+    "Tab",
+    {ar:"ض",en:"Q"},{ar:"ص",en:"W"},{ar:"ث",en:"E"},{ar:"ق",en:"R"},{ar:"ف",en:"T"},
+    {ar:"غ",en:"Y"},{ar:"ع",en:"U"},{ar:"ه",en:"I"},{ar:"خ",en:"O"},
+    {ar:"ح",en:"P"},{ar:"ج",en:"["},{ar:"د",en:"]"}
+  ],
+  [
+    "Caps",
+    {ar:"ش",en:"A"},{ar:"س",en:"S"},{ar:"ي",en:"D"},{ar:"ب",en:"F"},{ar:"ل",en:"G"},
+    {ar:"ا",en:"H"},{ar:"ت",en:"J"},{ar:"ن",en:"K"},{ar:"م",en:"L"},
+    {ar:"ك",en:";"},{ar:"ط",en:"'"}
+  ],
+  [
+    "Shift",
+    {ar:"ئ",en:"Z"},{ar:"ء",en:"X"},{ar:"ؤ",en:"C"},{ar:"ر",en:"V"},
+    {ar:"لا",en:"B"},{ar:"ى",en:"N"},{ar:"ة",en:"M"},
+    {ar:"و",en:","},{ar:"ز",en:"."},{ar:"ظ",en:"/"},"Shift"
+  ],
+  ["Ctrl","Alt","Space","Alt","Ctrl"]
+];
+
+const keyboard = document.getElementById("keyboard");
+const info = document.getElementById("info");
+
+layout.forEach(row=>{
+  const rowDiv=document.createElement("div");
+  rowDiv.className="row";
+
+  row.forEach(key=>{
+    const k=document.createElement("div");
+    k.className="key";
+
+    if(key==="Backspace"||key==="Caps") k.classList.add("xwide");
+    if(key==="Tab"||key==="Shift") k.classList.add("wide");
+    if(key==="Space") k.classList.add("space");
+
+    if(typeof key==="object"){
+      k.innerHTML=`<span class="en">${key.en}</span><span class="ar">${key.ar}</span>`;
+      k.onclick=()=>info.textContent="Arabic letter: "+key.ar+" (English key: "+key.en+")";
+    } else {
+      k.textContent=key;
+    }
+
+    rowDiv.appendChild(k);
+  });
+
+  keyboard.appendChild(rowDiv);
+});
+</script>
+
 </body>
 </html>
